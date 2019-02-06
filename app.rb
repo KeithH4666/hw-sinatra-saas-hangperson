@@ -31,6 +31,7 @@ class HangpersonApp < Sinatra::Base
     # NOTE: don't change previous line - it's needed by autograder!
 
     @game = HangpersonGame.new(word)
+    session[:game] = @game
     redirect '/show'
   end
   
@@ -39,15 +40,17 @@ class HangpersonApp < Sinatra::Base
   # If a guess is invalid, set flash[:message] to "Invalid guess."
   post '/guess' do
     letter = params[:guess].to_s[0]
-  if /^[A-Z]+$/i.match(letter) ## Only if the letter is in the alphabet.(A valid number.)
+    
+    if /^[A-Z]+$/i.match(letter) ## Only if the letter is in the alphabet.(A valid number.)
    
     if !@game.guess(letter) ## If the user already guessed the letter in this game.
        flash[:message] = "You have already used that letter." ## Output a flash message to notify the user.
     end
   else ## If the users guess is not in the alphabet.(Not a valid number.)
-    flash[:message] = "Invalid guess." ## Output a flash message to notify the user.
-  end
+    flash[:message] = "Invalid"
+    end
     
+    ### YOUR CODE HERE ###
     redirect '/show'
   end
   
@@ -57,32 +60,17 @@ class HangpersonApp < Sinatra::Base
   # Notice that the show.erb template expects to use the instance variables
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
-   
-     if @game.check_win_or_lose == :win ## If the game has been won.
-        redirect '/win' ## Redirect the user to the win action.
-    elsif  @game.check_win_or_lose == :lose ## If the game has been lost.
-        redirect '/lose' ## Redirect the user to the lose action.
-      end
-    
     erb :show # You may change/remove this line
   end
   
-  get '/win' do ## Modified to prevent cheating.
-     if @game.check_win_or_lose == :win ## If the game has actually been won.
-    erb :win ## Present the win view.
-  else
-    redirect '/show' ## Else redirect them back to the '/show' action.
-    
-  end
+  get '/win' do
+    ### YOUR CODE HERE ###
+    erb :win # You may change/remove this line
   end
   
-  get '/lose' do ## Modified to prevent cheating.
-   
-     if @game.check_win_or_lose == :lose ## If the game has actually been lost.
-    erb :lose # Present the lose view.
-    else
-    redirect '/show' ## Else redirect them back to the '/show' action.
-  end
+  get '/lose' do
+    ### YOUR CODE HERE ###
+    erb :lose # You may change/remove this line
   end
   
 end

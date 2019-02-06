@@ -10,6 +10,14 @@ class HangpersonGame
   
   def initialize(word)
     @word = word
+    @guesses = ''
+    @wrong_guesses = ''
+    @word_with_guesses = ''
+    word.each_char do |i|
+     
+      @word_with_guesses << '-'
+    end
+    @check_win_or_lose = :play
   end
 
   # You can test it by running $ bundle exec irb -I. -r app.rb
