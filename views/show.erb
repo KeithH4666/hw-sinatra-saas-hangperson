@@ -1,5 +1,9 @@
 
-
+<% if flash[:message] %>
+   <div class="alert alert-danger">
+     <%= flash[:message] %>  
+   </div>
+<% end %>
 
 <div class="alert alert-warning">
   <p class="lead">

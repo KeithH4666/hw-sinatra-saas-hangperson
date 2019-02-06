@@ -22,7 +22,7 @@ class HangpersonApp < Sinatra::Base
   end
   
   get '/new' do
-    erb :new
+    erb :layout
   end
   
   post '/create' do
