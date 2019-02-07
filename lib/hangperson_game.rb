@@ -27,6 +27,13 @@ class HangpersonGame
   # Method for guessing a letter
   def guess(letter)
     
+    raise ArgumentError if letter.nil? ## Raise an error if the letter is null.
+    raise ArgumentError if letter == '' ## Raise an error if the user entered an empty string. 
+    raise ArgumentError if !letter.match(/[a-zA-Z]/) ## Raise an error is the user entered a letter that is not in the alphabet.
+
+    
+    letter.downcase!
+    
     # If word includes letter
     if(word.include? letter)
       # And the letter isnt already in guess
