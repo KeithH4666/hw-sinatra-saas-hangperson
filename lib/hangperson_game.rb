@@ -24,10 +24,24 @@ class HangpersonGame
     end
   end
   
-  def guess(word)
+  # Method for guessing a letter
+  def guess(letter)
     
-    # Add guessed word to guesses
-    guesses.concat(word)
+    # If word includes letter
+    if(word.include? letter)
+      # And the letter isnt already in guess
+      unless (guesses.include? letter)
+
+      # Add guessed word to guesses
+      guesses.concat(letter)
+      end #end unless
+      
+    else
+      unless (wrong_guesses.include? letter)
+        # Add the guessed letter to the list of incorrected guesses
+        wrong_guesses.concat(letter)
+      end # end unless
+    end # end for 
   end
   
   
