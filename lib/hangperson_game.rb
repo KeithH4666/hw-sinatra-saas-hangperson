@@ -17,11 +17,17 @@ class HangpersonGame
     @guesses = ''
     @wrong_guesses = ''
     @word_with_guesses = ''
-    word.each_char do |i|
-     
-      @word_with_guesses << '-'
+    @guess = ''
+    
+    for i in 1..word.length do
+      @word_with_guesses.concat('-')
     end
-    @check_win_or_lose = :play
+  end
+  
+  def guess(word)
+    
+    # Add guessed word to guesses
+    guesses.concat(word)
   end
   
   
