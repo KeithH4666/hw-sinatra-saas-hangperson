@@ -11,6 +11,7 @@ class HangpersonGame
   attr_accessor :guesses 
   attr_accessor :wrong_guesses 
   attr_accessor :word_with_guesses 
+  attr_accessor :check_win_or_lose
   
   def initialize(word)
     @word = word
@@ -18,6 +19,7 @@ class HangpersonGame
     @wrong_guesses = ''
     @word_with_guesses = ''
     @guess = ''
+    @check_win_or_lose=:play
     
      word.each_char do |i|
       @word_with_guesses << '-'
@@ -49,6 +51,12 @@ class HangpersonGame
           end
           
       end
+      
+      # If guessed letters match word set to win
+      if(word_with_guesses == word)
+        @check_win_or_lose = :win
+      end
+      
       return true # return true valid guess
       end #end unless
     return false  # invalid guess false
@@ -56,6 +64,12 @@ class HangpersonGame
       unless (wrong_guesses.include? letter)
         # Add the guessed letter to the list of incorrected guesses
         wrong_guesses.concat(letter)
+        
+        # Wrong guesses greater than 7 set win or loose to loose
+        if(@wrong_guesses.length>=7)
+          @check_win_or_lose = :lose
+        end
+        
         return true
       end # end unless
     return false # invalid guess
