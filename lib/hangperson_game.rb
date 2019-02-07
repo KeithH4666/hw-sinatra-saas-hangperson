@@ -7,6 +7,10 @@ class HangpersonGame
 
   # def initialize()
   # end
+  attr_accessor :word 
+  attr_accessor :guesses 
+  attr_accessor :wrong_guesses 
+  attr_accessor :word_with_guesses 
   
   def initialize(word)
     @word = word
@@ -19,6 +23,8 @@ class HangpersonGame
     end
     @check_win_or_lose = :play
   end
+  
+  
 
   # You can test it by running $ bundle exec irb -I. -r app.rb
   # And then in the irb: irb(main):001:0> HangpersonGame.get_random_word
