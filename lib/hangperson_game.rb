@@ -31,16 +31,18 @@ class HangpersonGame
     if(word.include? letter)
       # And the letter isnt already in guess
       unless (guesses.include? letter)
-
       # Add guessed word to guesses
       guesses.concat(letter)
+      return true # return true valid guess
       end #end unless
-      
+    return false  # invalid guess false
     else
       unless (wrong_guesses.include? letter)
         # Add the guessed letter to the list of incorrected guesses
         wrong_guesses.concat(letter)
+        return true
       end # end unless
+    return false # invalid guess
     end # end for 
   end
   
