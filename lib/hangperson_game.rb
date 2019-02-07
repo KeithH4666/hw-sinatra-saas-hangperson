@@ -19,8 +19,8 @@ class HangpersonGame
     @word_with_guesses = ''
     @guess = ''
     
-    for i in 1..word.length do
-      @word_with_guesses.concat('-')
+     word.each_char do |i|
+      @word_with_guesses << '-'
     end
   end
   
@@ -40,6 +40,15 @@ class HangpersonGame
       unless (guesses.include? letter)
       # Add guessed word to guesses
       guesses.concat(letter)
+      
+      # For test case 14
+      for i in 0..word.length do
+          # If the guessedLetter is in the string, replace it with the guessed letter
+          if(letter == word[i])
+            word_with_guesses[i] = letter
+          end
+          
+      end
       return true # return true valid guess
       end #end unless
     return false  # invalid guess false
