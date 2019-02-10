@@ -41,15 +41,15 @@ class HangpersonApp < Sinatra::Base
   post '/guess' do
     letter = params[:guess].to_s[0]
     
-    if(letter.nil? || letter.empty? || letter[/[a-zA-Z]+/] != letter)
-      flash[:message] = "Invalid guess, Try again!."
-    else
-      # If a guess is repeated, set flash[:message] to "You have already used that letter."
-      if(@game.guess(letter) == false)
-        flash[:message] = "You have already used that letter, Try again!."
-      end
+  if /^[A-Z]+$/i.match(letter) ## If in alphabet
+   
+    if !@game.guess(letter) ## If already guessed letter.
+       flash[:message] = "You have already used that letter."
     end
-    redirect '/show'
+  else ## If invalid
+    flash[:message] = "Invalid guess."
+  end
+  redirect '/show'
   end
   
   # Everytime a guess is made, we should eventually end up at this route.
